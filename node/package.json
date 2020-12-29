@@ -4,7 +4,7 @@
   "description": "WebSocket con blue deployment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js --exec babel-node"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,12 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.11.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "nodemon": "^2.0.6"
   }
 }
