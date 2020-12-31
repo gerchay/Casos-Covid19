@@ -52,8 +52,8 @@ func publishJSON(w http.ResponseWriter, r *http.Request ){
 	_ = json.NewDecoder(r.Body).Decode(&post)
 
 	fmt.Println(post)
-	fmt.Println(post.Name)
-	fmt.Println(post.Age)
+	// fmt.Println(post.Name)
+	// fmt.Println(post.Age)
 	json.NewEncoder(w).Encode(&post)
 	err := client.Publish(r.Context(), "canal1",
 	 `{ "name": "`+ post.Name +`",

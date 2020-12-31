@@ -23,6 +23,11 @@ func main(){
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println(msg.Channel, msg.Payload)
+		//fmt.Println(msg.Channel, msg.Payload)
+		val, err := client.Do(ctx, "RPUSH", "listaCasos", msg.Payload).Result()
+		if err != nil {
+			fmt.Println("Error: ",err)
+		}
+		fmt.Println(val)
 	}
 }
