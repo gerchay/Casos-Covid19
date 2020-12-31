@@ -55,10 +55,16 @@ func publishJSON(w http.ResponseWriter, r *http.Request ){
 	fmt.Println(post.Name)
 	fmt.Println(post.Age)
 	json.NewEncoder(w).Encode(&post)
-	// err := client.Publish(r.Context(), "canal1", r.Body).Err()
-	// if err != nil {
-	// 	panic(err)
-	// }
+	err := client.Publish(r.Context(), "canal1",
+	 `{ "name": "`+ post.Name +`",
+	"location": "`+post.Location+`",
+	"age": "`+ string(post.Age) +`",
+	"infected_type": "`+ post.Infected_type +`",
+	"state": "`+ post.State + `"
+}`).Err()
+	if err != nil {
+		panic(err)
+	}
 
 }
 
