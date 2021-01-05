@@ -1,8 +1,8 @@
-FROM node:latest AS build
-WORKDIR /usr/src/app
+FROM node:14
+WORKDIR /app
 COPY package*.json ./
-RUN npm install --only=production
-COPY . ./
+RUN npm install 
+COPY . .
 
 EXPOSE 8080
-CMD [ "node", "start" ]
+CMD [ "npm", "start" ]

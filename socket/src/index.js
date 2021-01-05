@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-app.set('port', process.env.PORT || 8080 );
+app.set('port', process.env.PORT || 8080);
 app.set('MONGO_URI', 'mongodb+srv://covid-chay:admin345@covid19.6yla0.mongodb.net/covid19?retryWrites=true&w=majority')
 app.use( bodyParser.json() );
 app.use( cors() );
