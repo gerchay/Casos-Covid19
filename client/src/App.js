@@ -7,7 +7,7 @@ import io from "socket.io-client";
 let socket;
 
 const App = () => {
-  const ENDPOINT = 'localhost:5000';
+  const ENDPOINT = 'localhost:8080';
   socket = io(ENDPOINT);
   
   useEffect(() => {
