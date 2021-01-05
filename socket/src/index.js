@@ -21,29 +21,75 @@ const io = socketIo(server, {
   },
 });
 
-
 let interval;
+let interval2;
+
 io.on("connection", socket => {
   console.log("We have a new conecction!!");
   if (interval) {
     clearInterval(interval);
+    clearInterval(interval2);
   }
 
-  interval = setInterval(() => getApiAndEmit(socket), 10000);
+  interval = setInterval(() => {
+    Infectado.find()
+        .exec()
+        .then( x =>  socket.emit("Infectados",x) );
+  }, 5000);
+
+  interval2 = setInterval(() => {
+    Infectado.aggregate([
+      {
+        $sortByCount: '$location'
+      }
+    ])
+      .limit(3)
+      .exec( (error, infecTop) =>  socket.emit("top3", infecTop ) )
+
+  }, 10000);
+
+  interval2 = setInterval(() => {
+    Infectado.aggregate([ { $sortByCount: '$location' } ])
+      .limit(3)
+      .exec( (error, infecTop) =>  socket.emit("grafica", infecTop ) )
+
+  }, 10000);
+
+  interval3 = setInterval(() => {
+    Infectado.aggregate([ { $sortByCount: '$location'  }
+    ])
+      .exec( (error, infect) =>  socket.emit("grafLocation", infect ) )
+
+  }, 7000);
+
+  interval4 = setInterval(() => {
+    Infectado.aggregate([ { $sortByCount: '$state'  }
+    ])
+      .exec( (error, infect) =>  socket.emit("grafState", infect ) )
+
+  }, 5000);
+
+  interval5 = setInterval(() => {
+    Infectado.aggregate([ { $sortByCount: '$infected_type'  }
+    ])
+      .exec( (error, infect) =>  socket.emit("grafType", infect ) )
+
+  }, 5000);
+
+  interval5 = setInterval(() => {
+    Infectado.aggregate([ { $sortByCount: '$age'  }
+    ])
+      .exec( (error, infect) =>  socket.emit("grafAge", infect ) )
+
+  }, 5000);
 
   socket.on("disconnect", () => {
     console.log("Client had left!!");
     clearInterval(interval);
+    clearInterval(interval2);
   });
 
 });
 
-const getApiAndEmit = socket => {
-  Infectado.find()
-        .exec()
-        .then( x =>  socket.emit("Infectados",x) );
-};
-
 app.use( router );
-
 server.listen( app.get('port') , () => console.log(`Listening on port ${ app.get('port') }`));
