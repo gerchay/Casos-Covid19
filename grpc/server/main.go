@@ -8,6 +8,7 @@ import (
 	"net"
 	"time"
 
+	"github.com/go-redis/redis"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -33,32 +34,34 @@ type server struct {
 	pb.UnimplementedGreeterServer
 }
 
+var ctx = context.Background()
+
 func conexionMongo(infectado string) {
 
 	//base de redis
 	var enviar infect
 	json.Unmarshal([]byte(infectado), &enviar)
 	//Enviando los datos a la base
-	/*client := redis.NewClient(&redis.Options{
-		//la db de google
-		Addr:     "redis-18582.c12281.us-central1-mz.gcp.cloud.rlrcp.com:18582",
-		Password: "WKJeO6VNC7tZX6ae672rbXNJUUXCy3Wm",
-		//Addr:     "localhost:6379",
-		//Password: "",
-		DB: 0,
+
+	client := redis.NewClient(&redis.Options{
+		Addr:     "35.238.130.224:6379",
+		Password: "redissopes1",
+		DB:       0,
 	})
-	send, err := json.Marshal(enviar)
-	err = client.LPush("lista", send).Err()
+	defer client.Close()
+
+	val, err := client.Do(ctx, "RPUSH", "listaCasos", infectado).Result()
 	if err != nil {
-		fmt.Println(err)
-	}*/
+		fmt.Println("Error: ", err)
+	}
+	fmt.Println(val)
 
 	//base de datos de mongo
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	mongoclient, err := mongo.Connect(ctx, options.Client().ApplyURI(
-		"mongodb+srv://covid-chay:admin345@covid19.6yla0.mongodb.net/covid19?retryWrites=true&w=majority",
+		"mongodb://covid-chay:admin345@covid19-shard-00-00.6yla0.mongodb.net:27017,covid19-shard-00-01.6yla0.mongodb.net:27017,covid19-shard-00-02.6yla0.mongodb.net:27017/covid19?ssl=true&replicaSet=atlas-yl708b-shard-0&authSource=admin&retryWrites=true&w=majority",
 	))
 	if err != nil {
 		log.Fatal(err)
