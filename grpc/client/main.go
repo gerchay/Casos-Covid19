@@ -17,14 +17,7 @@ import (
 )
 
 const (
-	address = "localhost:5000"
-	/*defaultName = `{
-		"name": "Mario enrique Urbina Juarez",
-		"location": "Sacatepequez",
-		"age": 22,
-		"infected_type": "communitary",
-		"state": "active"
-	}`*/
+	address = "localhost:50051"
 )
 
 func conexion(w http.ResponseWriter, require *http.Request) {

@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	port = ":5000"
+	port = ":50051"
 )
 
 type infect struct {
