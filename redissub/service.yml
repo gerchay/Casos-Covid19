@@ -1,0 +1,9 @@
+ 
+apiVersion: v1
+kind: Service
+metadata:
+  name: redissub-service
+spec:
+  selector:
+    app: redissub
+  type: LoadBalancer

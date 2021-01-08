@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redispub-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redispub
+  template:
+    metadata:
+      labels:
+        app: redispub
+    spec:
+      containers:
+      - name: redispub-container
+        image: us.gcr.io/usac-298718/redispub
+        ports:
+        - containerPort: 8080
