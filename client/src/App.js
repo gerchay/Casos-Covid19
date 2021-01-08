@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Home } from './pages/home';
 import { TOP } from './pages/top';
 import { CIRCULARES } from './pages/circulares';
+import { ULTIMOS } from './pages/ultimos';
+import { BARRAS } from './pages/barras';
 import io from "socket.io-client";
 let socket;
 
@@ -16,14 +18,14 @@ const App = () => {
 
   return (
     <Router>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-dark bg-primary navbar-expand-sm fixed-top">
         <div className="container">
           <h3 className="navbar-brand" >Sistemas Operativos 1</h3>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <div className="collapse navbar-collapse" id="navbarColor02">
+          <div className="collapse navbar-collapse" id="Navbar">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item active">
                 <Link to="/" className="nav-link" >Datos</Link>
@@ -44,14 +46,15 @@ const App = () => {
           </div>
         </div>
       </nav>
+      <br/><br/><br/>
       
       <div className="container pt-4">
         <Switch>
           <Route path="/barras">
-            <About />
+            <BARRAS />
           </Route>
           <Route path="/casos">
-            <About />
+          <ULTIMOS />
           </Route>
           <Route path="/circulares">
             <CIRCULARES socket={ socket } />

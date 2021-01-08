@@ -14,4 +14,10 @@ def hello_world():
     print(jsonlist)
     print(val)
 
+    # headers = {
+    #     'Access-Control-Allow-Origin': '*'
+    # }
+
+    # return (jsonlist, 200, headers)
+
 hello_world()

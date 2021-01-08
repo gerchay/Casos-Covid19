@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redissub-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redissub
+  template:
+    metadata:
+      labels:
+        app: redissub
+    spec:
+      containers:
+      - name: redissub-container
+        image: us.gcr.io/usac-298718/redissub
+        ports:
+        - containerPort: 8080
