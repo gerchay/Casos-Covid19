@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redissub-deploy
+  name: traffic
   namespace: proyecto2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: redissub
+      app: traffic
   template:
     metadata:
       labels:
-        app: redissub
+        app: traffic
     spec:
       containers:
-      - name: redissub-container
-        image: us.gcr.io/usac-298718/redissub
+      - name: traffic
+        image: us.gcr.io/usac-298718/traffic
         ports:
         - containerPort: 8080

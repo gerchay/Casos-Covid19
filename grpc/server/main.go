@@ -88,7 +88,7 @@ func conexionMongo(infectado string) {
 
 // SayHello implements helloworld.GreeterServer
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	//conexionMongo(in.GetName())
+	conexionMongo(in.GetName())
 	fmt.Printf("Recibido: %v", in.GetName())
 	return &pb.HelloReply{Message: "Hola" + in.GetName()}, nil
 }

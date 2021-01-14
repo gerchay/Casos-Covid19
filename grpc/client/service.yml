@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: redispub-service
+  name: grpc-client-service
   namespace: proyecto2
 spec:
   selector:
-    app: redispub
+    app: grpc-client
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 4000
+      targetPort: 4000
   type: LoadBalancer

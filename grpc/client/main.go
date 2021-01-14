@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	address = "localhost:50051"
+	address = "34.67.89.142:50051"
 )
 
 func conexion(w http.ResponseWriter, require *http.Request) {

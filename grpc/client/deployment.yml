@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redissub-deploy
+  name: grpc-client-deploy
   namespace: proyecto2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: redissub
+      app: grpc-client
   template:
     metadata:
       labels:
-        app: redissub
+        app: grpc-client
     spec:
       containers:
-      - name: redissub-container
-        image: us.gcr.io/usac-298718/redissub
+      - name: grpc-client-container
+        image: us.gcr.io/usac-298718/grpc-client
         ports:
-        - containerPort: 8080
+        - containerPort: 4000

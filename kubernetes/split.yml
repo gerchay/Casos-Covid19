@@ -1,0 +1,12 @@
+apiVersion: split.smi-spec.io/v1alpha1
+kind: TrafficSplit
+metadata:
+  name: function-split
+  namespace: proyecto2
+spec:
+  service: dummy
+  backends:
+  - service: redispub-service
+    weight: 500m
+  - service: grpc-client-service
+    weight: 500m

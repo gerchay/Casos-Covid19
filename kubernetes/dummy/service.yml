@@ -1,13 +1,12 @@
- 
 apiVersion: v1
 kind: Service
 metadata:
-  name: redispub-service
+  name: dummy-service
   namespace: proyecto2
 spec:
   selector:
-    app: redispub
+    app: dummy
   ports:
     - port: 8080
-      targetPort: 8080
+      targetPort: 80
   type: LoadBalancer

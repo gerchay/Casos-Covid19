@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redissub-deploy
+  name: dummy-deploy
   namespace: proyecto2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: redissub
+      app: dummy
   template:
     metadata:
       labels:
-        app: redissub
+        app: dummy
     spec:
       containers:
-      - name: redissub-container
-        image: us.gcr.io/usac-298718/redissub
+      - name: dummy-container
+        image: us.gcr.io/usac-298718/dummy
         ports:
-        - containerPort: 8080
+        - containerPort: 80
