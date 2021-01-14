@@ -6,6 +6,7 @@ import (
 "context"
 "log"
 "time"
+"os"
 
 "go.mongodb.org/mongo-driver/bson"
 "go.mongodb.org/mongo-driver/mongo"
@@ -41,7 +42,7 @@ func main(){
 		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 		defer cancel()
 		mongoclient, err := mongo.Connect(ctx, options.Client().ApplyURI(
-			"mongodb://covid-chay:admin345@covid19-shard-00-00.6yla0.mongodb.net:27017,covid19-shard-00-01.6yla0.mongodb.net:27017,covid19-shard-00-02.6yla0.mongodb.net:27017/covid19?ssl=true&replicaSet=atlas-yl708b-shard-0&authSource=admin&retryWrites=true&w=majority",
+			os.Getenv("MongoDB"),
 		))
 		if err != nil {
 			log.Fatal(err)
