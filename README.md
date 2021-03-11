@@ -1,6 +1,6 @@
-# Covid 19 - Kubernetes Architecture
+# Casos Covid 19 - Kubernetes Architecture
 
-### Arquitectura del Sistema:
+### Arquitectura del Sistema
 
 ![img/WhatsApp_Image_2020-12-26_at_6.47.03_PM.jpeg](img/WhatsApp_Image_2020-12-26_at_6.47.03_PM.jpeg)
 
@@ -45,3 +45,10 @@ Prometheus y Grafana son utilizados de igual forma, Prometheus para obtener los 
 Para generar altas cantidades de tráfico se utiliza una api de Python que implementa Locust, con el cúal se puede generar el tráfico aleatorio para probar el rendimiento de la aplicación.
 
 ![img/Untitled%201.png](img/Untitled%201.png)
+
+---
+
+
+⭐️ From [@gerchay](https://github.com/gerchay)
+<br/>
+⭐️ From [@LuisLVar](https://github.com/LuisLVar)
